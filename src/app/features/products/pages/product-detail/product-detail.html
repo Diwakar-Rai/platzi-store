@@ -1,0 +1,12 @@
+@if (loading) {
+  <div>Loading...</div>
+}
+
+@if (!loading && product) {
+  <div>
+    <h2>{{ product.title }}</h2>
+    <img [src]="product.images" width="200" />
+    <p>{{ product.description }}</p>
+    <h3>₹{{ product.price }}</h3>
+  </div>
+}

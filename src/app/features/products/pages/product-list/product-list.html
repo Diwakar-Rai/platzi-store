@@ -1,0 +1,10 @@
+@if (loading) {
+  <p>Loading...</p>
+}
+<ul>
+  @for (product of products(); track product.id) {
+    <li>
+      <a [routerLink]="['/products', product.id]"> {{ product.title }} - ₹{{ product.price }} </a>
+    </li>
+  }
+</ul>
