@@ -10,19 +10,25 @@ import { RouterLink } from '@angular/router';
   styleUrl: './product-list.css',
 })
 export class ProductList {
-  loading: boolean = true;
-  products = signal<any[]>([]);
   private productService = inject(Product);
+  loading = signal(true);
+  error = signal(false);
+  products = signal<any[]>([]);
+  constructor() {
+    this.loadProducts();
+  }
 
-  ngOnInit() {
+  loadProducts() {
     this.productService.getProducts().subscribe({
       next: (data) => {
         console.log(data);
         this.products.set(data);
-        this.loading = false;
+        this.loading.set(false);
       },
-      error: () => {
-        this.loading = false;
+      error: (err) => {
+        console.log('API Error', err);
+        this.error.set(true);
+        this.loading.set(false);
       },
     });
   }
