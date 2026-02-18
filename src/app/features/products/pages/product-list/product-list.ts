@@ -28,8 +28,8 @@ export class ProductList {
         this.loading.set(false);
       },
       error: (err) => {
-        console.log('API Error', err);
         this.error.set(true);
+        console.log('User message:', err.userMessage);
         this.loading.set(false);
       },
     });
