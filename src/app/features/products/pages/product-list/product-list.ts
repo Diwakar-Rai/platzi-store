@@ -1,11 +1,13 @@
 import { Component, inject, signal } from '@angular/core';
 import { Product } from '../../services/product';
 import { RouterLink } from '@angular/router';
+import { Loader } from '../../../../shared/components/loader/loader';
+import { ErrorMessage } from '../../../../shared/components/error-message/error-message';
 
 @Component({
   standalone: true,
   selector: 'app-product-list',
-  imports: [RouterLink],
+  imports: [RouterLink, Loader, ErrorMessage],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css',
 })
