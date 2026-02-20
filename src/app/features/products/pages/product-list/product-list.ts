@@ -3,11 +3,12 @@ import { Product } from '../../services/product';
 import { RouterLink } from '@angular/router';
 import { Loader } from '../../../../shared/components/loader/loader';
 import { ErrorMessage } from '../../../../shared/components/error-message/error-message';
+import { ProductCard } from '../../components/product-card/product-card';
 
 @Component({
   standalone: true,
   selector: 'app-product-list',
-  imports: [RouterLink, Loader, ErrorMessage],
+  imports: [RouterLink, Loader, ErrorMessage, ProductCard],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css',
 })

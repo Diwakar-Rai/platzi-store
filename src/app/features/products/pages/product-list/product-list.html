@@ -12,11 +12,9 @@
 }
 
 @if (!loading() && !error() && products().length > 0) {
-  <ul>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
     @for (product of products(); track product.id) {
-      <li>
-        <a [routerLink]="['/products', product.id]"> {{ product.title }} - ₹{{ product.price }} </a>
-      </li>
+      <app-product-card [product]="product"></app-product-card>
     }
-  </ul>
+  </div>
 }
