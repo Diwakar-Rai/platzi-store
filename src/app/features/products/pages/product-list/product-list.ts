@@ -24,7 +24,6 @@ export class ProductList {
   loadProducts() {
     this.productService.getProducts().subscribe({
       next: (data) => {
-        console.log(data);
         this.products.set(data);
         this.loading.set(false);
       },

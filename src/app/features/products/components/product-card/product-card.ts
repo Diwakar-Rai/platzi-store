@@ -17,7 +17,7 @@ export interface Product {
 export class ProductCard {
   private cartService = inject(CartService);
   product = input<Product>({} as Product);
-  addToCart() {
-    this.cartService.addToCart(this.product);
+  addToCart(product: any) {
+    this.cartService.addToCart(product);
   }
 }

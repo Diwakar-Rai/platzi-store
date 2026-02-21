@@ -20,4 +20,12 @@ export class Cart {
   clear() {
     this.cartService.clearCart();
   }
+
+  increment(id: number) {
+    this.cartService.increment(id);
+  }
+
+  decrement(id: number) {
+    this.cartService.decrement(id);
+  }
 }
