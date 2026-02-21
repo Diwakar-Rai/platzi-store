@@ -3,6 +3,12 @@
     <a routerLink="/" class="text-lg font-semibold hover:text-gray-300"> Platzi Store </a>
 
     <a routerLink="/products" class="hover:text-gray-300 transition"> Products </a>
+    <div class="flex items-center gap-1">
+      <a routerLink="/cart" class="hover:text-gray-300 transition"> Cart </a>
+      <span class="bg-blue-500 text-[8px] px-2 py-1 rounded-full">
+        {{ cartService.totalItems() }}
+      </span>
+    </div>
   </div>
 
   <div>

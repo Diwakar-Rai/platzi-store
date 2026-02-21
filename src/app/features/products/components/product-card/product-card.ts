@@ -1,5 +1,6 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CartService } from '../../../cart/services/cart';
 export interface Product {
   id: string;
   images: string[];
@@ -14,5 +15,9 @@ export interface Product {
   styleUrl: './product-card.css',
 })
 export class ProductCard {
+  private cartService = inject(CartService);
   product = input<Product>({} as Product);
+  addToCart() {
+    this.cartService.addToCart(this.product);
+  }
 }

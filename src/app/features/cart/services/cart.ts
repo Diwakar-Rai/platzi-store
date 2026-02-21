@@ -3,7 +3,7 @@ import { computed, Injectable, signal } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class Cart {
+export class CartService {
   private _items = signal<any[]>(JSON.parse(localStorage.getItem('cart') || '[]'));
   items = computed(() => this._items());
   totalItems = computed(() => this._items().reduce((acc, item) => acc + item.quantity, 0));
