@@ -1,4 +1,3 @@
-<h2>Products</h2>
 @if (loading()) {
   <app-loader message="Products Loading..."></app-loader>
 }
@@ -12,9 +11,47 @@
 }
 
 @if (!loading() && !error() && products().length > 0) {
+  <div class="flex flex-wrap gap-4 mb-6">
+    <input
+      type="text"
+      placeholder="Search..."
+      (input)="search.set($any($event.target).value)"
+      class="border px-3 py-2 rounded w-48"
+    />
+
+    <input
+      type="number"
+      placeholder="Min Price"
+      (input)="priceMin.set($any($event.target).valueAsNumber)"
+      class="border px-3 py-2 rounded w-32"
+    />
+
+    <input
+      type="number"
+      placeholder="Max Price"
+      (input)="priceMax.set($any($event.target).valueAsNumber)"
+      class="border px-3 py-2 rounded w-32"
+    />
+
+    <button
+      (click)="applyFilters()"
+      class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500"
+    >
+      Apply
+    </button>
+  </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
     @for (product of products(); track product.id) {
       <app-product-card [product]="product"></app-product-card>
     }
+  </div>
+  <div class="flex justify-center gap-4 mt-8">
+    <button (click)="previousPage()" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">
+      Previous
+    </button>
+
+    <button (click)="nextPage()" class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400">
+      Next
+    </button>
   </div>
 }

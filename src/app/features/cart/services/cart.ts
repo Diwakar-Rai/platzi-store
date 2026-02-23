@@ -17,7 +17,7 @@ export class CartService {
     this._items().reduce((acc, item) => acc + item.price * item.quantity, 0),
   );
 
-  addToCart(product: any) {
+  addToCart(product: ProductType) {
     const items = this._items();
 
     const existing = items.find((p) => p.id === product.id);
