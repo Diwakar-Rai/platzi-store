@@ -5,9 +5,16 @@
     <a routerLink="/products" class="hover:text-gray-300 transition"> Products </a>
     <div class="flex items-center gap-1">
       <a routerLink="/cart" class="hover:text-gray-300 transition"> Cart </a>
-      <span class="bg-blue-500 text-[8px] px-2 py-1 rounded-full">
-        {{ cartService.totalItems() }}
-      </span>
+
+      @if (totalItems() > 0) {
+        <span
+          class="bg-blue-500 text-[8px] px-2 py-1 rounded-full"
+          [class.scale-125]="animate()"
+          [class.scalse-100]="!animate()"
+        >
+          {{ cartService.totalItems() }}
+        </span>
+      }
     </div>
   </div>
 

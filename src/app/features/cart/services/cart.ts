@@ -1,10 +1,13 @@
 import { Injectable, signal, computed } from '@angular/core';
+import { ProductType } from '../../products/models/products.models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  private _items = signal<any[]>(JSON.parse(localStorage.getItem('cart') || '[]'));
+  private _items = signal<(ProductType & { quantity: number })[]>(
+    JSON.parse(localStorage.getItem('cart') || '[]'),
+  );
 
   items = computed(() => this._items());
 

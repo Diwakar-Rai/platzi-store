@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { ApiService } from '../../../core/services/api.service';
 import { Router, RouterLink } from '@angular/router';
 import { Auth } from '../../../core/services/auth';
@@ -14,8 +14,23 @@ export class Navbar {
   private router = inject(Router);
   private authService = inject(Auth);
   public cartService = inject(CartService);
-  isAuthenticated = this.authService.token;
 
+  isAuthenticated = this.authService.token;
+  totalItems = this.cartService.totalItems;
+  animate = signal(false);
+
+  constructor() {
+    effect(() => {
+      const count = this.totalItems();
+      if (count > 0) {
+        this.animate.set(true);
+
+        setTimeout(() => {
+          this.animate.set(false);
+        }, 300);
+      }
+    });
+  }
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
