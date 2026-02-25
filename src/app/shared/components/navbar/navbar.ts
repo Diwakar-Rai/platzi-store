@@ -18,6 +18,7 @@ export class Navbar {
   isAuthenticated = this.authService.token;
   totalItems = this.cartService.totalItems;
   animate = signal(false);
+  user = this.authService.user;
 
   constructor() {
     effect(() => {

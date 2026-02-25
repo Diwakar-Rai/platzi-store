@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Navbar } from './shared/components/navbar/navbar';
+import { Auth } from './core/services/auth';
 
 @Component({
   standalone: true,
@@ -8,4 +9,9 @@ import { Navbar } from './shared/components/navbar/navbar';
   templateUrl: './app.component.html',
   imports: [RouterOutlet, Navbar],
 })
-export class App {}
+export class App {
+  private authService = inject(Auth);
+  constructor() {
+    this.authService.restoreSession();
+  }
+}

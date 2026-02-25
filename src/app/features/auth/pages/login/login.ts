@@ -24,7 +24,10 @@ export class Login {
     this.authService.login(this.email, this.password).subscribe({
       next: (res) => {
         this.authService.setToken(res.access_token);
-        this.router.navigate(['/products']);
+        this.authService.getProfile().subscribe((user) => {
+          this.authService.setUser(user);
+          this.router.navigate(['/products']);
+        });
       },
       error: () => {
         this.error.set(true);

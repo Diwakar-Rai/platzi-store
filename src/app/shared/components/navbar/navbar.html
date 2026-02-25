@@ -19,6 +19,9 @@
   </div>
 
   <div>
+    @if (user()) {
+      <span class="mr-4 text-sm">{{ user()?.name }}</span>
+    }
     @if (!isAuthenticated()) {
       <a routerLink="/login" class="bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 transition">
         Login
