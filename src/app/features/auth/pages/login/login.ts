@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { Auth } from '../../../../core/services/auth';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class Login {
   private authService = inject(Auth);
+  private activeRoute = inject(ActivatedRoute);
   private router = inject(Router);
 
   email = '';
@@ -28,10 +29,11 @@ export class Login {
 
     this.authService.login(this.email, this.password).subscribe({
       next: (res) => {
-        this.authService.setToken(res.access_token);
+        this.authService.setSession(res.access_token, res.refresh_token);
         this.authService.getProfile().subscribe((user) => {
           this.authService.setUser(user);
-          this.router.navigate(['/products']);
+          const returnUrl = this.activeRoute.snapshot.queryParams['returnUrl'] || '/products';
+          this.router.navigate([returnUrl]);
         });
       },
       error: () => {

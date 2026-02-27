@@ -12,6 +12,11 @@ import { Auth } from './core/services/auth';
 export class App {
   private authService = inject(Auth);
   constructor() {
-    this.authService.restoreSession();
+    if (this.authService.accessToken()) {
+      this.authService.getProfile().subscribe({
+        next: (user) => this.authService.setUser(user),
+        error: () => this.authService.logout(),
+      });
+    }
   }
 }
