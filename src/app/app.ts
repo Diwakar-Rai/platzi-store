@@ -12,7 +12,8 @@ import { Auth } from './core/services/auth';
 export class App {
   private authService = inject(Auth);
   constructor() {
-    if (this.authService.accessToken()) {
+    const token = localStorage.getItem('access_token') || sessionStorage.getItem('access_token');
+    if (token) {
       this.authService.getProfile().subscribe({
         next: (user) => this.authService.setUser(user),
         error: () => this.authService.logout(),

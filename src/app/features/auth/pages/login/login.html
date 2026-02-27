@@ -51,6 +51,10 @@
           <p class="text-red-500 text-xs mt-1">Password must be at least 6 characters.</p>
         }
       </div>
+      <div class="flex items-center gap-2">
+        <input type="checkbox" [(ngModel)]="rememberMe" name="rememberMe" class="w-4 h-4" />
+        <label class="text-sm">Remember me</label>
+      </div>
 
       <button
         type="submit"

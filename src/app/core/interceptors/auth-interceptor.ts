@@ -26,7 +26,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         }
         return refresh$.pipe(
           switchMap((res) => {
-            authService.setSession(res.access_token, res.refresh_token);
+            authService.updateTokens(res.access_token, res.refresh_token);
             isRefreshing = false;
 
             const retryReq = req.clone({

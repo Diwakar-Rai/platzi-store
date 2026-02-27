@@ -16,6 +16,7 @@ export class Login {
 
   email = '';
   password = '';
+  rememberMe = false;
   loading = signal(false);
   error = signal(false);
   showPassword = signal(false);
@@ -29,7 +30,7 @@ export class Login {
 
     this.authService.login(this.email, this.password).subscribe({
       next: (res) => {
-        this.authService.setSession(res.access_token, res.refresh_token);
+        this.authService.setSession(res.access_token, res.refresh_token, this.rememberMe);
         this.authService.getProfile().subscribe((user) => {
           this.authService.setUser(user);
           const returnUrl = this.activeRoute.snapshot.queryParams['returnUrl'] || '/products';
