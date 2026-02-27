@@ -16,4 +16,8 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadChildren: () => import('./features/cart/cart.routes').then((m) => m.CART_ROUTES),
   },
+  {
+    path: 'register',
+    loadComponent: () => import('./features/auth/pages/register/register').then((m) => m.Register),
+  },
 ];

@@ -1,11 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
 import { Auth } from '../../../../core/services/auth';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -17,6 +17,11 @@ export class Login {
   password = '';
   loading = signal(false);
   error = signal(false);
+  showPassword = signal(false);
+
+  togglePassword() {
+    this.showPassword.update((v) => !v);
+  }
 
   onLogin() {
     this.loading.set(true);
