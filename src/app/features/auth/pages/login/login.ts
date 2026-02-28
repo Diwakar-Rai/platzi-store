@@ -33,8 +33,7 @@ export class Login {
         this.authService.setSession(res.access_token, res.refresh_token, this.rememberMe);
         this.authService.getProfile().subscribe((user) => {
           this.authService.setUser(user);
-          const returnUrl = this.activeRoute.snapshot.queryParams['returnUrl'] || '/products';
-          this.router.navigate([returnUrl]);
+          this.router.navigate(['/products']);
         });
       },
       error: () => {

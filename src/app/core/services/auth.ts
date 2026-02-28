@@ -7,7 +7,7 @@ import { User } from '../../features/auth/models/user.model';
 })
 export class Auth {
   private api = inject(ApiService);
-  private _token = signal<string | null>(localStorage.getItem('token'));
+  private _token = signal<string | null>(localStorage.getItem('access_token'));
   private _user = signal<User | null>(null);
   private _accessToken = signal<string | null>(
     localStorage.getItem('access_token') || sessionStorage.getItem('access_token'),

@@ -16,6 +16,9 @@
         </span>
       }
     </div>
+    @if (isAuthenticated()) {
+      <a routerLink="/profile" class="hover:text-gray-300"> Profile </a>
+    }
   </div>
 
   <div class="flex">

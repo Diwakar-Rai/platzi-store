@@ -1,0 +1,59 @@
+<div class="max-w-2xl mx-auto mt-10 bg-white shadow-lg rounded-xl p-8">
+  <h2 class="text-2xl font-bold mb-6">Profile</h2>
+
+  @if (!editing()) {
+    <div class="flex items-center gap-6">
+      <img [src]="user()?.avatar" class="w-24 h-24 rounded-full object-cover border" />
+
+      <div>
+        <h3 class="text-lg font-semibold">{{ user()?.name }}</h3>
+        <p class="text-gray-500">{{ user()?.email }}</p>
+        <p class="text-sm text-blue-600 capitalize">
+          {{ user()?.role }}
+        </p>
+      </div>
+    </div>
+
+    <button
+      (click)="enableEdit()"
+      class="mt-6 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 transition"
+    >
+      Edit Profile
+    </button>
+  }
+
+  @if (editing()) {
+    <div class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium mb-1">Name</label>
+        <input [(ngModel)]="name" class="w-full border px-3 py-2 rounded" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1">Avatar URL</label>
+        <input [(ngModel)]="avatar" class="w-full border px-3 py-2 rounded" />
+      </div>
+
+      <div class="flex gap-4">
+        <button
+          (click)="save()"
+          [disabled]="loading()"
+          class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500"
+        >
+          Save
+        </button>
+
+        <button
+          (click)="editing.set(false)"
+          class="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"
+        >
+          Cancel
+        </button>
+      </div>
+
+      @if (error()) {
+        <p class="text-red-600 text-sm">Update failed.</p>
+      }
+    </div>
+  }
+</div>
