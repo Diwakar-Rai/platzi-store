@@ -12,7 +12,7 @@ import { CartService } from '../../../features/cart/services/cart';
 })
 export class Navbar {
   private router = inject(Router);
-  private authService = inject(Auth);
+  public authService = inject(Auth);
   public cartService = inject(CartService);
 
   isAuthenticated = this.authService.token;

@@ -17,4 +17,7 @@ export class ApiService {
   put<T>(endpoint: string, body: any) {
     return this.http.put<T>(`${this.baseUrl}/${endpoint}`, body);
   }
+  delete(endpoint: string) {
+    return this.http.delete(`${this.baseUrl}/${endpoint}`);
+  }
 }

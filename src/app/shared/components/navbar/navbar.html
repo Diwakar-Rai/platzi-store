@@ -19,6 +19,9 @@
     @if (isAuthenticated()) {
       <a routerLink="/profile" class="hover:text-gray-300"> Profile </a>
     }
+    @if (authService.isAdmin()) {
+      <a routerLink="/admin" class="hover:text-gray-300 transition"> Admin </a>
+    }
   </div>
 
   <div class="flex">

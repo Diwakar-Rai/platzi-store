@@ -25,4 +25,16 @@ export class Product {
   getProductById(id: number) {
     return this.api.get<ProductType>(`products/${id}`);
   }
+
+  createProduct(data: Partial<ProductType>) {
+    return this.api.post<ProductType>('products', data);
+  }
+
+  updateProduct(id: number, data: Partial<ProductType>) {
+    return this.api.put<ProductType>(`products/${id}`, data);
+  }
+
+  deleteProduct(id: number) {
+    return this.api.delete(`products/${id}`);
+  }
 }
