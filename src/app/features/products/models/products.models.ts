@@ -12,3 +12,11 @@ export interface ProductType {
   images: string[];
   category: CategoryType;
 }
+
+export interface ProductPayload {
+  title: string;
+  price: number;
+  description: string;
+  images: string[];
+  categoryId: number;
+}
